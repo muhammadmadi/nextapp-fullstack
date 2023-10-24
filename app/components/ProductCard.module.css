@@ -1,0 +1,6 @@
+.card {
+    font-size: larger;
+    padding: 1rem;
+    border: 1ps solid #c62a2a;
+    display: ruby;
+}
