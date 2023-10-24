@@ -33,14 +33,14 @@ const UserTable = async() => {
           <thead>
             <tr  >
               <th> 
-                <Link href="/user?searchOrder=name">Name </Link>   
+                <Link href="/users?sortOrder=name">Name </Link>   
                   </th>
               <th>
-              <Link href="/user?searchOrder=email">Email </Link>   
+              <Link href="/users?sortOrder=email">Email </Link>   
                 
               </th>
               <th>
-              <Link href="/user?searchOrder=Address">address </Link>   
+              <Link href="/users?sortOrder=Address">address </Link>   
                 </th>
             </tr>
           </thead>

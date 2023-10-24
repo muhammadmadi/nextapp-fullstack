@@ -2,8 +2,12 @@ import { list } from "postcss";
 import React, { cache } from "react";
 import UserTable from "./UserTable";
 
+interface Props {
+  searchParams : {sortOrder:string}
+}
 
-const UsersPage =  () => {
+const UsersPage = async ({searchParams: {sortOrder}} : Props) => {
+console.log(sortOrder);
 
   return (
     <  >
