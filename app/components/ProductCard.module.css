@@ -1,6 +1,9 @@
 .card {
     font-size: larger;
     padding: 1rem;
-    border: 1ps solid #c62a2a;
+    border: 1px solid #c62a2a;
     display: ruby;
+    color : #c6b92a;
+    background-color: rgb(174, 204, 204);
+
 }
