@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react'
 
 interface User {
@@ -31,9 +32,16 @@ const UserTable = async() => {
         <table className="table table-zebra-zebra  ">
           <thead>
             <tr  >
-              <th>Name</th>
-              <th>Email</th>
-              <th>Address</th>
+              <th> 
+                <Link href="/user?searchOrder=name">Name </Link>   
+                  </th>
+              <th>
+              <Link href="/user?searchOrder=email">Email </Link>   
+                
+              </th>
+              <th>
+              <Link href="/user?searchOrder=Address">address </Link>   
+                </th>
             </tr>
           </thead>
           <tbody>
