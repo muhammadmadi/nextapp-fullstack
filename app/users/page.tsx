@@ -1,7 +1,7 @@
 import { list } from "postcss";
 import React, { cache } from "react";
 import UserTable from "./UserTable";
-
+import { sort } from 'fast-sort';
 
 interface Props {
   searchParams : {sortOrder:string}

@@ -20,7 +20,7 @@ interface User {
   }
      
     interface Props {
-      sortOrder:string;
+      sortOrder:string ;
     }
 
 
