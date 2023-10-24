@@ -1,6 +1,7 @@
 import { list } from "postcss";
 import React, { cache } from "react";
 import UserTable from "./UserTable";
+import { sort } from 'fast-sort';
 
 interface Props {
   searchParams : {sortOrder:string}
@@ -13,7 +14,7 @@ console.log(sortOrder);
     <  >
       <h1 className="btn btn-primary"> Users </h1>
       <p className="hover" >{new Date().toLocaleTimeString()}</p>
-      <UserTable/>
+      <UserTable sort={sortOrder} />
     </>
   );
 };
