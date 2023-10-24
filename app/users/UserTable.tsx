@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
+import { sort } from 'fast-sort';
 
 interface User {
     id: number;
@@ -18,15 +19,17 @@ interface User {
     };
   }
      
-    
+    interface Props {
+      sortOrder:string;
+    }
 
 
-const UserTable = async() => {
+const UserTable = async({sortOrder}:Props) => {
     const res = await fetch("https://jsonplaceholder.typicode.com/users", {
         cache: "no-store",
       }); /* {next : {revalidate : 10 }}    */
       const users: User[] = await res.json();
-    
+    const  sortedUsers = sort (users).asc(sortOrder === 'email' ? user => user.email: user => user.name )
   return (
     <div className="flex items-center space-x-3">
         <table className="table table-zebra-zebra  ">
@@ -45,10 +48,10 @@ const UserTable = async() => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {sortedUsers.map((user) => (
               <tr key={user.id}>
               
-                <td className="hover:bg-slate-500 " > {user.username}</td>
+                <td className="hover:bg-slate-500 " > {user.name}</td>
                 <td className="btn btn-primary flex-wrap "> {user.email}</td>
                 <td className="hover:bg-slate-500 ">{user.address.geo.lat}</td>
               </tr>
