@@ -2,7 +2,7 @@ import React from 'react'
 
 const NewUserPage = () => {
   return (
-    <div>NewUserPage</div>
+    <div className='btn btn-primary '>NewUserPage</div>
   )
 }
 
