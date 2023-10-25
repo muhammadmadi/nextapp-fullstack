@@ -19,7 +19,7 @@
 body {
 /* color: rgb(var(--foreground-rgb)); */
   color: rgb(var( --background-start-rgb));
-  padding : 1rem; /*
+ /* padding : 1rem; 
   background: linear-gradient(
       to bottom,
       transparent,
@@ -28,4 +28,10 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 
+}
+
+@layer base{
+  h1{
+    @apply font-extrabold text-2xl mb-3 ;
+  }
 }
