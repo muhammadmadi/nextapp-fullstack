@@ -18,18 +18,38 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: number } }
+  { params }: { params: { id: string } }
 ) {
   const body = await request.json();
   const validation = schema.safeParse(body);
-  //check if use name invalid
+
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 });
-  //check if user exist
-  if (params.id > 10)
-    return NextResponse.json({ error: "User no found" }, { status: 404 });
 
-  return NextResponse.json({ id: 1, name: "moe" });
+  const userEmail = await prisma.user.findUnique({
+    where: { email: body.email },
+  });
+
+  if (userEmail) {
+    return NextResponse.json(
+      { error: "this email already exists" },
+      { status: 400 }
+    );
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+
+  if (!user) {
+    return NextResponse.json({ error: "User no found" }, { status: 404 });
+  }
+
+  const UpdatedUser = await prisma.user.update({
+    where: { id: user.id },
+    data: { name: body.name, email: body.email },
+  });
+  return NextResponse.json(UpdatedUser, { status: 202 });
 }
 
 export async function DELETE(
