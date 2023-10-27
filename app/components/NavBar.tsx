@@ -4,10 +4,11 @@ import React from "react";
 const NavBar = () => {
   return (
     <div className="flex p-6">
-      <Link href="/" className="mr-5">
-        Next.Js
+      <Link href="/" className="mr-5 btn btn-primary">
+        Home Page
       </Link>
-      <Link href='/users'> Users </Link>
+      <Link href='/users' className="mr-5 btn btn-primary"> Users Page </Link>
+       <Link href='/upload' className="mr-5 btn btn-primary"> Upload Page  </Link>
     </div>
   );
 };
