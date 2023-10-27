@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { number } from "zod";
 import schema from "./schema";
+import prisma from "@/prisma/client";
 
 
-export function GET(request: NextRequest) {
-  let asd = NextResponse.json([
-    { id: 1, name: "milk" , price : 21},
-    { id: 2, name: "bread" , price : 32},
-  ]);
+export async function GET(request: NextRequest) {
+    const products = await prisma.product.findMany()
 
-  return asd;
+  return NextResponse.json(products);
 } 
 
 export async function POST(request:NextRequest ) {
@@ -18,38 +15,27 @@ export async function POST(request:NextRequest ) {
     if (!validation.success)
         return NextResponse.json(validation.error.errors , {status : 400});
 
-        return NextResponse.json({id:10 ,name : body.name , price : body.price }, {status : 201}); 
+////////////////
+
+const product = await prisma.product.findFirst({
+  where : { name : body.name }})
+
+  if (product) {
+    return NextResponse.json({error :'this Product already exists'} , {status :400 }) ;
+  }
+
+   const NewProduct = await prisma.product.create({
+    data: {
+      name : body.name,
+      price: body.price
+    }
+  })
+        
+        return NextResponse.json(NewProduct , {status : 201}); 
       //return NextResponse.json({id:10 , ...body });  
 }
 
 
 
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { id: number } }
-) {
-  const body = await request.json();
-  const validation = schema.safeParse(body);
-  //check if use name invalid
-  if (!validation.success)
-    return NextResponse.json(validation.error.errors, { status: 400 });
-//check if user exist
- if (params.id > 10)
-    return NextResponse.json({ error: "User no found" }, { status: 404 });
 
-    return NextResponse.json({id:1 , name :"moe"}  );
-}
-
-
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: number } }
-) {
-   const body = await request.json();
-//check if user exist
- if (params.id > 10)
-    return NextResponse.json({ error: "User no found" }, { status: 404 });
-
-    return NextResponse.json('user deleted ' , {status : 200} ); 
-}
