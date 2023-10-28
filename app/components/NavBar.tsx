@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const NavBar = () => {
-  const {status ,data: Session } = useSession();
+  const {status , data: Session } = useSession();
   //  if (status === 'loading') return null;
 
   return (
@@ -16,12 +16,14 @@ const NavBar = () => {
       <Link href='/users' className=" btn btn-primary"> Users Page </Link>
        <Link href='/upload' className=" btn btn-primary"> Upload Page  </Link>
 
-<Link href='/api/auth/signin' className=" btn btn-primary"> Login  </Link>
+
     {status === 'loading'&& <div className="loading loading-bars loading-lg" > </div> }
-   {status ==='authenticated' && <div> {Session.user!.name} 
-   <Link href='/api/auth/signout' className="ml-3"> Sign Out  </Link>
-   </div>  }
-   {status === 'unauthenticated'&& <Link href='/api/auth/signin'> </Link>}
+
+   {status ==='authenticated' && <div className=" mr-3 btn btn-primary "> {Session.user!.name}
+   <Link href='/api/auth/signout' className="mr-3 btn btn-primary ml-3"> Sign Out  </Link>
+     </div>}
+
+   {status === 'unauthenticated'&& <Link  href='/api/auth/signin' className=" btn btn-primary " >signin </Link>}
     </div>
   );
 };
