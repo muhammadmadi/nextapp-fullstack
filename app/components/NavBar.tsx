@@ -18,7 +18,9 @@ const NavBar = () => {
 
 <Link href='/api/auth/signin' className=" btn btn-primary"> Login  </Link>
     {status === 'loading'&& <div className="loading loading-bars loading-lg" > </div> }
-   {status ==='authenticated' && <div> {Session.user!.name}</div>  }
+   {status ==='authenticated' && <div> {Session.user!.name} 
+   <Link href='/api/auth/signout' className="ml-3"> Sign Out  </Link>
+   </div>  }
    {status === 'unauthenticated'&& <Link href='/api/auth/signin'> </Link>}
     </div>
   );
