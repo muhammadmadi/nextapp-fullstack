@@ -29,13 +29,14 @@ export const AuthOptions :NextAuthOptions = {
 });
       if (!user) 
          return null;
-    bcrypt.compare(credentials.password , user.)
+  const passwordMached  =  await bcrypt.compare(credentials.password , user.hashedPassword!);
 
+  return passwordMached ? user : null ; 
 
         // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
       }
     }
-  })
+  ),
     ////////
   GoogleProvider({
     clientId: process.env.GOOGLE_CLIENT_ID!,
