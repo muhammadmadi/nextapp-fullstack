@@ -4,6 +4,7 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+
 export const AuthOptions :NextAuthOptions = {
   adapter:PrismaAdapter(prisma),
   providers: [
@@ -28,7 +29,7 @@ export const AuthOptions :NextAuthOptions = {
 });
       if (!user) 
          return null;
-
+    bcrypt.
 
 
         // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
