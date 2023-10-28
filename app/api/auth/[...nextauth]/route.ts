@@ -22,7 +22,7 @@ export const AuthOptions :NextAuthOptions = {
     },
     async authorize(credentials, req) {
       // Add logic here to look up the user from the credentials supplied
-      if (!credentials?.email || !credentials.password){ return null}
+      if (!credentials?.email || credentials.password){ return null}
     //  const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
  const user = await prisma.user.findUnique({
   where : {email:credentials.email},
